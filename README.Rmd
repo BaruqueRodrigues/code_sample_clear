@@ -1,0 +1,66 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# code.sample.clear
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+O pacote code.sample.clear tem como objetivo apresentar um code sample para a Seleção Chamada 07/2023 FGV EESP CLEAR, apresentando o code sample e sumarizando em formato de pacote o código encapsulado, seguindo as melhores normas de reprodutibilidade, manutenção e escalamento de scripts em R
+
+## Instalação
+
+A instalação é feita através do repositório do github
+
+```{r, eval=FALSE}
+devtools::install_github("BaruqueRodrigues/code_sample_clear")
+```
+
+## Exemplo
+
+Workflow básico de funcionamento do pacote é dado através da raspagem da api do site <https://formosodoaraguaia.megasofttransparencia.com.br/>, onde nos conectamos a api do site e fazemos todas as requisições pelo ambiente do R.
+
+Para executar a raspagem criamos 2 funções, a primeira que pega as informações dos empenhos, e a segunda que pega o detalhamento dos empenhos. A execução do pacote é bem simples, primeiro é executada a função pega_empenhos()
+
+```{r exemplo}
+code.sample.clear::pega_empenhos()
+```
+
+Também disponibilizamos os dados no pacote em formato .rds que pode ser acessado através do código
+
+```{r cars}
+code.sample.clear::df_empenhos
+```
+
+A partir do dataset acima utilizamos a coluna código para acessar os detalhes dentro da api do site <https://formosodoaraguaia.megasofttransparencia.com.br/>.
+
+```{r }
+code.sample.clear::pega_detalhes_processo(
+  chave_primaria = code.sample.clear::df_empenhos$codigo[1])
+```
+
+Para raspar todos os códigos utilizamos um a função map. Apresentaremos aqui uma versão resumida, onde apresentaremos os 10 primeiros códigos de processo, caso deseje os detalhes de todos os empenhos, suprima os colchetes. Utilizamos um intervalo de .2 segundos entre cada requisição para evitar bloqueios pelos multiplos acessos.
+
+```{r}
+ 
+purrr::map_dfr(code.sample.clear::df_empenhos$codigo[1:5],
+               ~ {
+                 Sys.sleep(.2)
+                 code.sample.clear::pega_detalhes_processo(.x)
+                 
+                 
+               })
+```

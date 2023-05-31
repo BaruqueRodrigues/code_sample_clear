@@ -1,0 +1,21 @@
+Package: code.sample.clear
+Title: Code Sample Clear FGV
+Version: 0.0.0.9000
+Authors@R: 
+    person("Baruque", "Rodrigues", , "quemuel.baruque@ufpe.br", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-8593-6542"))
+Description: raspa os dados do site https://formosodoaraguaia.megasofttransparencia.com.br/.
+License: Apache License (>= 2)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Depends: 
+    R (>= 2.10)
+LazyData: true
+Imports: 
+    dplyr,
+    httr,
+    magrittr,
+    purrr,
+    tibble,
+    tidyr
