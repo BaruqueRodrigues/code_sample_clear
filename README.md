@@ -34,7 +34,6 @@ função pega_empenhos()
 
 ``` r
 code.sample.clear::pega_empenhos()
-```
 #> # A tibble: 11,004 × 11
 #>    codigo numeroDoTcm data       nomeDoFornecedor         classificacaoOrcamen…¹
 #>     <int>       <int> <chr>      <chr>                    <chr>                 
@@ -53,6 +52,8 @@ code.sample.clear::pega_empenhos()
 #> # ℹ 6 more variables: valorDoEmpenho <dbl>, valorDaAnulacaoDoEmpenho <dbl>,
 #> #   valorDaLiquidacao <dbl>, valorDaAnulacaoDaLiquidacao <dbl>,
 #> #   valorDoPagamento <dbl>, valorAnulacaoDoPagamento <dbl>
+```
+
 
 Também disponibilizamos os dados no pacote em formato .rds que pode ser
 acessado através do código
